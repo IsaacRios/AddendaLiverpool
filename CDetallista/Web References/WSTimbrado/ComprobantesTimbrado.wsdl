@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://facturainteligenteintegraciones.com/WSTimbrado" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://facturainteligenteintegraciones.com/WSTimbrado" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://facturainteligenteintegraciones.com/WSTimbrado">
+      <s:element name="TimbrarTxT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_PeticionCliente" type="tns:PeticionObtenerXML" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PeticionObtenerXML">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="contrasena" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cadenaTXT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="rfcEmisor" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="tipoCFDI" type="tns:t_CFDI" />
+          <s:element minOccurs="1" maxOccurs="1" name="productivo" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="cadenaComplemento" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="t_CFDI">
+        <s:restriction base="s:string">
+          <s:enumeration value="Factura" />
+          <s:enumeration value="NotadeCredito" />
+          <s:enumeration value="RecibodeHonorarios" />
+          <s:enumeration value="RecibodeArrendamiento" />
+          <s:enumeration value="RecibodePago" />
+          <s:enumeration value="RecibodeDonativo" />
+          <s:enumeration value="NotadeCargo" />
+          <s:enumeration value="NotadeDevolucion" />
+          <s:enumeration value="CartaPorte" />
+          <s:enumeration value="CartaPorteIngreso" />
+          <s:enumeration value="RecibodeIngreso" />
+          <s:enumeration value="RecibodeNomina" />
+          <s:enumeration value="FacturaAcreditamientoIEPS" />
+          <s:enumeration value="FacturaConstructoras" />
+          <s:enumeration value="FacturaAerolineas" />
+          <s:enumeration value="FacturaInsEducativas" />
+          <s:enumeration value="FacturaVehiculoUsado" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="TimbrarTxTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TimbrarTxTResult" type="tns:Respuesta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Respuesta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="exito" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="errorGeneral" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="errorEspecifico" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="xmlTimbrado" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="pdf" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="uuid" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GenerarQR">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_uuid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_qr" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="_error" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerarQRResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_qr" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="_error" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Sellar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="varuser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="varpas" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlContenido" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rfcEmisor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dAdicionales" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="productivo" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="tipoCFDI" type="tns:t_CFDI" />
+            <s:element minOccurs="0" maxOccurs="1" name="cadenaComplemento" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SellarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SellarResult" type="tns:Respuesta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerPDF">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlTimbrado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="adicionales" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tipoCFDI" type="tns:t_CFDI" />
+            <s:element minOccurs="0" maxOccurs="1" name="error" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerPDFResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerPDFResult" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="error" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TimbrarXMLconComplementos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlconAdd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rfcEmisor" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tipoCFDI" type="tns:t_CFDI" />
+            <s:element minOccurs="1" maxOccurs="1" name="sellar" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="productivo" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TimbrarXMLconComplementosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TimbrarXMLconComplementosResult" type="tns:Respuesta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarCreditos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contrasena" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarCreditosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultarCreditosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerAcuseCancelacion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contrasena" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmisorRFC" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerAcuseCancelacionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerAcuseCancelacionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerAcuseEnvio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contrasena" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmisorRFC" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerAcuseEnvioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerAcuseEnvioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarComplementoTimbre">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contrasena" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarComplementoTimbreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultarComplementoTimbreResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarEstadoComprobante">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contrasena" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarEstadoComprobanteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultarEstadoComprobanteResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConfirmarRecepcion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contrasena" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConfirmarRecepcionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConfirmarRecepcionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelarCFDI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contrasena" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RfcEmisor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MyError" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelarCFDIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CancelarCFDIResult" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="MyError" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegistroTicket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pet" type="tns:RegistroTicket" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RegistroTicket">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="noticket" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="rfcEmisor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="rfcReceptor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cadeTxt" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RegistroTicketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistroTicketResult" type="tns:RRegistroTicket" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RRegistroTicket">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="exito" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="error" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FacturarTicket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pet" type="tns:CambioTicket" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CambioTicket">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="qticket" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="rfcEmisor" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FacturarTicketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FacturarTicketResult" type="tns:Respuesta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="TimbrarTxTSoapIn">
+    <wsdl:part name="parameters" element="tns:TimbrarTxT" />
+  </wsdl:message>
+  <wsdl:message name="TimbrarTxTSoapOut">
+    <wsdl:part name="parameters" element="tns:TimbrarTxTResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerarQRSoapIn">
+    <wsdl:part name="parameters" element="tns:GenerarQR" />
+  </wsdl:message>
+  <wsdl:message name="GenerarQRSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerarQRResponse" />
+  </wsdl:message>
+  <wsdl:message name="SellarSoapIn">
+    <wsdl:part name="parameters" element="tns:Sellar" />
+  </wsdl:message>
+  <wsdl:message name="SellarSoapOut">
+    <wsdl:part name="parameters" element="tns:SellarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerPDFSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerPDF" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerPDFSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerPDFResponse" />
+  </wsdl:message>
+  <wsdl:message name="TimbrarXMLconComplementosSoapIn">
+    <wsdl:part name="parameters" element="tns:TimbrarXMLconComplementos" />
+  </wsdl:message>
+  <wsdl:message name="TimbrarXMLconComplementosSoapOut">
+    <wsdl:part name="parameters" element="tns:TimbrarXMLconComplementosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarCreditosSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultarCreditos" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarCreditosSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultarCreditosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerAcuseCancelacionSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerAcuseCancelacion" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerAcuseCancelacionSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerAcuseCancelacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerAcuseEnvioSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerAcuseEnvio" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerAcuseEnvioSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerAcuseEnvioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarComplementoTimbreSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultarComplementoTimbre" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarComplementoTimbreSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultarComplementoTimbreResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarEstadoComprobanteSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultarEstadoComprobante" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarEstadoComprobanteSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultarEstadoComprobanteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmarRecepcionSoapIn">
+    <wsdl:part name="parameters" element="tns:ConfirmarRecepcion" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmarRecepcionSoapOut">
+    <wsdl:part name="parameters" element="tns:ConfirmarRecepcionResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelarCFDISoapIn">
+    <wsdl:part name="parameters" element="tns:CancelarCFDI" />
+  </wsdl:message>
+  <wsdl:message name="CancelarCFDISoapOut">
+    <wsdl:part name="parameters" element="tns:CancelarCFDIResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegistroTicketSoapIn">
+    <wsdl:part name="parameters" element="tns:RegistroTicket" />
+  </wsdl:message>
+  <wsdl:message name="RegistroTicketSoapOut">
+    <wsdl:part name="parameters" element="tns:RegistroTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="FacturarTicketSoapIn">
+    <wsdl:part name="parameters" element="tns:FacturarTicket" />
+  </wsdl:message>
+  <wsdl:message name="FacturarTicketSoapOut">
+    <wsdl:part name="parameters" element="tns:FacturarTicketResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ComprobantesTimbradoSoap">
+    <wsdl:operation name="TimbrarTxT">
+      <wsdl:input message="tns:TimbrarTxTSoapIn" />
+      <wsdl:output message="tns:TimbrarTxTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerarQR">
+      <wsdl:input message="tns:GenerarQRSoapIn" />
+      <wsdl:output message="tns:GenerarQRSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Sellar">
+      <wsdl:input message="tns:SellarSoapIn" />
+      <wsdl:output message="tns:SellarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPDF">
+      <wsdl:input message="tns:ObtenerPDFSoapIn" />
+      <wsdl:output message="tns:ObtenerPDFSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TimbrarXMLconComplementos">
+      <wsdl:input message="tns:TimbrarXMLconComplementosSoapIn" />
+      <wsdl:output message="tns:TimbrarXMLconComplementosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCreditos">
+      <wsdl:input message="tns:ConsultarCreditosSoapIn" />
+      <wsdl:output message="tns:ConsultarCreditosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAcuseCancelacion">
+      <wsdl:input message="tns:ObtenerAcuseCancelacionSoapIn" />
+      <wsdl:output message="tns:ObtenerAcuseCancelacionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAcuseEnvio">
+      <wsdl:input message="tns:ObtenerAcuseEnvioSoapIn" />
+      <wsdl:output message="tns:ObtenerAcuseEnvioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarComplementoTimbre">
+      <wsdl:input message="tns:ConsultarComplementoTimbreSoapIn" />
+      <wsdl:output message="tns:ConsultarComplementoTimbreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarEstadoComprobante">
+      <wsdl:input message="tns:ConsultarEstadoComprobanteSoapIn" />
+      <wsdl:output message="tns:ConsultarEstadoComprobanteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmarRecepcion">
+      <wsdl:input message="tns:ConfirmarRecepcionSoapIn" />
+      <wsdl:output message="tns:ConfirmarRecepcionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelarCFDI">
+      <wsdl:input message="tns:CancelarCFDISoapIn" />
+      <wsdl:output message="tns:CancelarCFDISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistroTicket">
+      <wsdl:input message="tns:RegistroTicketSoapIn" />
+      <wsdl:output message="tns:RegistroTicketSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FacturarTicket">
+      <wsdl:input message="tns:FacturarTicketSoapIn" />
+      <wsdl:output message="tns:FacturarTicketSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ComprobantesTimbradoSoap" type="tns:ComprobantesTimbradoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TimbrarTxT">
+      <soap:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/TimbrarTxT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerarQR">
+      <soap:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/GenerarQR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Sellar">
+      <soap:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/Sellar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPDF">
+      <soap:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/ObtenerPDF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TimbrarXMLconComplementos">
+      <soap:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/TimbrarXMLconComplementos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCreditos">
+      <soap:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/ConsultarCreditos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAcuseCancelacion">
+      <soap:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/ObtenerAcuseCancelacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAcuseEnvio">
+      <soap:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/ObtenerAcuseEnvio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarComplementoTimbre">
+      <soap:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/ConsultarComplementoTimbre" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarEstadoComprobante">
+      <soap:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/ConsultarEstadoComprobante" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmarRecepcion">
+      <soap:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/ConfirmarRecepcion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelarCFDI">
+      <soap:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/CancelarCFDI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistroTicket">
+      <soap:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/RegistroTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FacturarTicket">
+      <soap:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/FacturarTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ComprobantesTimbradoSoap12" type="tns:ComprobantesTimbradoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TimbrarTxT">
+      <soap12:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/TimbrarTxT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerarQR">
+      <soap12:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/GenerarQR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Sellar">
+      <soap12:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/Sellar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPDF">
+      <soap12:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/ObtenerPDF" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TimbrarXMLconComplementos">
+      <soap12:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/TimbrarXMLconComplementos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCreditos">
+      <soap12:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/ConsultarCreditos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAcuseCancelacion">
+      <soap12:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/ObtenerAcuseCancelacion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAcuseEnvio">
+      <soap12:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/ObtenerAcuseEnvio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarComplementoTimbre">
+      <soap12:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/ConsultarComplementoTimbre" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarEstadoComprobante">
+      <soap12:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/ConsultarEstadoComprobante" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmarRecepcion">
+      <soap12:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/ConfirmarRecepcion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelarCFDI">
+      <soap12:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/CancelarCFDI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistroTicket">
+      <soap12:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/RegistroTicket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FacturarTicket">
+      <soap12:operation soapAction="http://facturainteligenteintegraciones.com/WSTimbrado/FacturarTicket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ComprobantesTimbrado">
+    <wsdl:port name="ComprobantesTimbradoSoap" binding="tns:ComprobantesTimbradoSoap">
+      <soap:address location="http://facturainteligenteintegraciones.com/WSTimbrado/ComprobantesTimbrado.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ComprobantesTimbradoSoap12" binding="tns:ComprobantesTimbradoSoap12">
+      <soap12:address location="http://facturainteligenteintegraciones.com/WSTimbrado/ComprobantesTimbrado.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
