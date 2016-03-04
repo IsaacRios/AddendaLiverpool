@@ -1,1 +1,5 @@
 C:\Users\Factura Inteligente\Documents\Visual Studio 2015\Projects\CDetallista\CDetallista\bin\Debug\CDetallista.exe.config
+C:\Users\Factura Inteligente\Documents\Visual Studio 2015\Projects\CDetallista\CDetallista\obj\Debug\CDetallista.csprojResolveAssemblyReference.cache
+C:\Users\Factura Inteligente\Documents\Visual Studio 2015\Projects\CDetallista\CDetallista\obj\Debug\CDetallista.Form1.resources
+C:\Users\Factura Inteligente\Documents\Visual Studio 2015\Projects\CDetallista\CDetallista\obj\Debug\CDetallista.Properties.Resources.resources
+C:\Users\Factura Inteligente\Documents\Visual Studio 2015\Projects\CDetallista\CDetallista\obj\Debug\CDetallista.csproj.GenerateResource.Cache
